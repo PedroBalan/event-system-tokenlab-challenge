@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Gerenciamento de Eventos</title>
+        <script src="assets/js/jquery-3.3.1.min.js"></script>
+        <link href="assets/css/bootstrap.min.css"  rel='stylesheet' type='text/css' /> 
+        <script src="assets/js/bootstrap.min.js" ></script>
+        <link href="assets/css/toastr.css"  rel='stylesheet' type='text/css' /> 
+        <link href="assets/css/events.css"  rel='stylesheet' type='text/css' />
+        <script src="assets/js/toastr.min.js" ></script>
+        
+    </head>
+    <body>
+        <!-- Image and text -->
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+            <img src="assets/imgs/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Gerenciamento de Eventos
+            </a>
+            <form action="/logout" method="GET">
+                <button class="btn right">Sair</button>
+            </form>
+        </nav>
+
+        <% if(data.msg) { %>
+            <div class="alert alert-success alert-changes-made" role="alert">
+                <%= data.msg %>
+            </div>
+        <% } %>
+
+        <!--Modal para criar eventos-->
+        <div class="modal" id="add-event-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Criar novo evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="create-event-form">
+                            <div class="form-group">
+                                <label for="name">Nome do Evento</label>
+                                <input name="name" type="text" class="form-control" id="event-name" aria-describedby="emailHelp" placeholder="Nome do evento">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descrição do Evento</label>
+                                <input name="description" type="text" class="form-control" id="event-description" placeholder="Descrição do evento">
+                            </div>
+                            <div class="form-check">
+                                <label for="begin-date">Data de início</label>
+                                <input name="begin_date" type="date" id="event-begin-date">
+                            </div>
+                            <div class="form-check">
+                                <label for="begin-time">Hora de início</label>
+                                <input name="begin_time" type="time" id="event-begin-time">
+                            </div>
+                            <div class="form-check">
+                                <label for="end-date">Data de término</label>
+                                <input name="end_date" type="date" id="event-end-date">
+                            </div>
+                            <div class="form-check">
+                                <label for="end-time">Hora de Término</label>
+                                <input name="end_time" type="time" id="event-end-time">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="create-event-button" type="button" class="btn btn-primary">Criar evento</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal para editar os eventos-->
+        <div class="modal" id="edit-event-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar o evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit-event-form">
+                            <div class="form-group">
+                                <label for="name">Nome do Evento</label>
+                                <input name="name" type="text" class="form-control" id="event-name-edit" aria-describedby="emailHelp" placeholder="Nome do evento">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descrição do Evento</label>
+                                <input name="description" type="text" class="form-control" id="event-description-edit" placeholder="Descrição do evento">
+                            </div>
+                            <div class="form-check">
+                                <label for="begin-date">Data de início</label>
+                                <input name="begin_date" type="date" id="event-begin-date-edit">
+                            </div>
+                            <div class="form-check">
+                                <label for="begin-time">Hora de início</label>
+                                <input name="begin_time" type="time" id="event-begin-time-edit">
+                            </div>
+                            <div class="form-check">
+                                <label for="end-date">Data de término</label>
+                                <input name="end_date" type="date" id="event-end-date-edit">
+                            </div>
+                            <div class="form-check">
+                                <label for="end-time">Hora de Término</label>
+                                <input name="end_time" type="time" id="event-end-time-edit">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button id="edit-form-event-button" type="button" class="btn btn-primary">Alterar informações</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="text-center mt-22">
+                <button id="add-event-button" class="btn btn-success">Adicionar um novo evento</button>
+            </div>
+            <div id="event-list" class="list-group mt-22">
+
+            </div>
+        </div>
+
+<script src="assets/js/event_actions.js"></script>
+</body>
+</html>
